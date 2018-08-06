@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const Product = require('../../models/product');
+const Category = require('../../models/category');
+const subCategory = require('../../models/subCategory');
 
 exports.get_all_products = (req,res,next) => {
     Product.find()
@@ -75,8 +77,36 @@ exports.post_product = (req,res,next) => {
     //     price:req.body.price
     // }
     //console.log(req.file);
+    Category.findById(req.body.category)
+            .then(cat =>{
+                if(!cat){
+                    return res.status(404).json({
+                        message: "Category not found"
+                    })
+                }else{
+                    subCategory.findById(req.body.subCategory)
+                                .then(scat =>{
+                                    return res.status(404).json({
+                                        message: "Sub Category not found"
+                                    })
+                                })
+                }
+            })
+            .catch(err =>{
+                console.log(err)
+                return res.status(500).json({
+                    message: "Something Wrong in category & Sub Category",
+                    error: err
+                })
+            })
+
+
     const product = new Product({
         _id: new mongoose.Types.ObjectId(),
+        category: req.body.category,
+        subCategory: req.body.subCategory,
+        description: req.body.description,
+        color: req.body.color,
         name: req.body.name,
         price:req.body.price,
         productImage: req.file.path
@@ -90,6 +120,10 @@ exports.post_product = (req,res,next) => {
             res.status(200).json({
                 message: "Product Added Successfully",
                 createdProduct: {
+                    category: result.category,
+                    subCategory: result.subCategory,
+                    description: result.description,
+                    color: result.color,
                     name:   result.name,
                     price:  result.price,
                     _id:    result._id,
