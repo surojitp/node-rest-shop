@@ -31,6 +31,18 @@ routs.get('/', (req,res,next) =>{
                 })
 })
 
+routs.get('/byCategoryId/:catId',(req,res,next)=>{
+    let categoryId = req.params.catId
+    //console.log(categoryId)
+    SubCategory.find({category:categoryId})
+               .then(sc =>{
+                res.status(200).json(sc)
+               })
+               .catch(err=>{
+                   console.log(err)
+               })
+})
+
 routs.post('/', (req,res,body)=>{
     Category.findById(req.body.categoryId)
             .then(cat =>{

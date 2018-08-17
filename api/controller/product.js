@@ -37,7 +37,82 @@ exports.get_all_products = (req,res,next) => {
         })
     
 }
+exports.get_product_by_category = (req,res) => {
 
+        const categoryId = req.params.categoryId;
+        const query = {category: categoryId}
+        Product.find(query)
+             
+               .then(doc => {
+                   if(doc.length < 1){
+                       res.status(204).json({success:false,count: doc.length})
+                  
+                  
+                    }
+                   else{
+                       const responce = {
+                            count: doc.length,
+                            product: doc.map(p=>{
+                                return {
+                                    id:p._id,
+                                    name: p.name,
+                                    description: p.description,
+                                    price: p.price,
+                                    productImage: p.productImage,
+                                    color: p.color,
+                                    category: p.category,
+                                    subCategory: p.subCategory
+                                    
+
+                                }
+                                
+                            })
+                       }
+                       res.status(200).json({success:true,data:responce})
+                   }
+               })
+               .catch(function(err){
+                res.status(401).json({success:false,data:err})
+
+               })
+}
+
+//////// by subCtegory
+
+exports.get_product_by_subCategory = (req,res,next) => {
+
+    const subCategoryId = req.params.subCategoryId;
+    const query = {subCategory: subCategoryId}
+    Product.find(query)
+           .exec()
+           .then(doc => {
+               if(doc.length <= 0){
+                   res.status(204).json({count: doc.length})
+               }
+               else{
+                   const responce = {
+                        count: doc.length,
+                        product: doc.map(p=>{
+                            return {
+                                id:p._id,
+                                name: p.name,
+                                description: p.description,
+                                price: p.price,
+                                productImage: p.productImage,
+                                color: p.color,
+                                category: p.category,
+                                subCategory: p.subCategory
+                                
+
+                            }
+                            
+                        })
+                   }
+                   res.status(200).json(responce)
+               }
+           })
+           .catch()
+}
 exports.get_single_product = (req,res,next) => {
     const id = req.params.productId;
     Product.findById(id)

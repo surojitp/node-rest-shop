@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const cors = require("cors");
 
 const productsRouts = require('./api/routs/products');
 const ordersRouts = require('./api/routs/orders');
@@ -26,7 +27,7 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
 var app = express();
-
+app.use(cors());
 // app.use((req,res,next) =>{
 //     res.status(200).json({
 //         msg:"it works.."
@@ -38,20 +39,20 @@ app.use('/uploads',express.static('uploads'))
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
-// app.use((req,res,next)=>{
-//     res.header('Access-Control-Allow-Origin','*');
-//     res.header(
-//         'Access-Control-Allow-Headers','*'
-//     )
-//     if(req.method === "OPTIONS"){
-//         res.header(
-//             'Access-Control-Allow-Method',
-//             'GET, POST, PUT, DELETE, PATCH'
-//         )
-//         return res.status(200).json({})
-//     }
+//app.use((req,res,next)=>{
+    //res.header('Access-Control-Allow-Origin','*');
+    // res.header(
+    //     'Access-Control-Allow-Headers','*'
+    // );
+    // if(req.method === "OPTIONS"){
+    //     res.header(
+    //         'Access-Control-Allow-Method',
+    //         'GET, POST, PUT, DELETE, PATCH'
+    //     )
+    //     return res.status(200).json({})
+    // }
     
-// })
+//})
 
 app.use('/products',productsRouts);
 
