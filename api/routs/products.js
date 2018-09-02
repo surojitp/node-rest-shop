@@ -45,7 +45,8 @@ router.get('/byCategory/:categoryId', productController.get_product_by_category)
 
 router.get('/bySubCategory/:subCategoryId', productController.get_product_by_subCategory);
 
-router.post('/', checkAuth, upload.single('productImage'), productController.post_product)
+//router.post('/', checkAuth, upload.single('productImage'), productController.post_product)
+router.post('/', upload.single('productImage'), productController.post_product)
 
 router.patch('/:productId', checkAuth, productController.update_product);
 

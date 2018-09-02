@@ -116,7 +116,7 @@ exports.get_product_by_subCategory = (req,res,next) => {
 exports.get_single_product = (req,res,next) => {
     const id = req.params.productId;
     Product.findById(id)
-            .select('name price _id productImage')
+            //.select('name price _id productImage')
             .exec()
             .then((doc)=>{
                 //console.log(doc);

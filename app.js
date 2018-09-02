@@ -9,6 +9,7 @@ const ordersRouts = require('./api/routs/orders');
 const userRouts = require('./api/routs/user');
 const categoryRouts = require('./api/routs/category');
 const subCategoryRouts = require('./api/routs/subCategory');
+const cartRoutes = require('./api/routs/cart');
 
 // mongoose.connect('mongodb://127.0.0.1:27017/nodeShop', { useNewUrlParser: true }, (err, res) => {
 //     if (err) throw err;
@@ -63,6 +64,8 @@ app.use('/user',userRouts);
 app.use('/category', categoryRouts);
 
 app.use('/subcategory', subCategoryRouts);
+
+app.use('/cart', cartRoutes),
 
 app.use((req,res,next)=>{
     const error = new Error('Not Found');

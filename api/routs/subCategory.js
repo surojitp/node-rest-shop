@@ -46,6 +46,7 @@ routs.get('/byCategoryId/:catId',(req,res,next)=>{
 routs.post('/', (req,res,body)=>{
     Category.findById(req.body.categoryId)
             .then(cat =>{
+               
                 if(!cat){
                     res.status(404).json({message: "Category not found"})                    
                 }else{

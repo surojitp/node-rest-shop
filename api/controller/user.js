@@ -12,7 +12,7 @@ exports.signup =  (req,res,next) =>{
         .then(user => {
             if(user.length >= 1){
                 return res.status(409).json({
-                    mesage: "Email already use"
+                    message: "Email already use"
                 })
             }else{
 
@@ -81,7 +81,8 @@ exports.user_login = (req, res, next)=>{
                     )
                     return res.status(200).json({
                         mesage: "Authentication Successfull",
-                        token: token
+                        token: token,
+                        userId: user[0]._id
                     });
                 }else{
                     return res.status(401).json({
