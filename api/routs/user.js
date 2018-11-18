@@ -4,7 +4,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const User = require('../../models/user');
 
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt-nodejs');
 const jsonwebtoken = require('jsonwebtoken');
 
 const userController = require('../controller/user');
