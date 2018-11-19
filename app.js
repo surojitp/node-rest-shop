@@ -21,17 +21,22 @@ var app = express();
 //////
 
 app.use((req,res,next)=>{
-    res.header('Access-Control-Allow-Origin','*');
-    res.header(
+    res.setHeader('Access-Control-Allow-Origin','*');
+    res.setHeader(
         'Access-Control-Allow-Headers','*'
     );
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    
     if(req.method === "OPTIONS"){
-        res.header(
+        res.setHeader(
             'Access-Control-Allow-Method',
             'GET, POST, PUT, DELETE, PATCH'
         )
         return res.status(200).json({})
     }
+
+    // Pass to next layer of middleware
+    next();
     
 })
 
