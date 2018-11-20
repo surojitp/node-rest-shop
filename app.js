@@ -45,7 +45,7 @@ app.use(bodyParser.json());
 
 //////// end db /////
 
-app.use((req,res,next)=>{
+/*app.use((req,res,next)=>{
   // res.setHeader('Access-Control-Allow-Origin','*');
   // res.setHeader(
   //     'Access-Control-Allow-Headers','*'
@@ -78,7 +78,27 @@ app.use((req,res,next)=>{
   // Pass to next layer of middleware
   next();
   
-})
+})*/
+
+var allowCrossDomain = function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+
+  // intercept OPTIONS method
+  if ('OPTIONS' == req.method) {
+    res.send(200);
+  }
+  else {
+    next();
+  }
+};
+
+app.configure(function () {
+  
+  app.use(allowCrossDomain);
+  
+});
 
 app.use('/products',productsRouts);
 
