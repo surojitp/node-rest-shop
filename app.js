@@ -17,11 +17,12 @@ const subCategoryRouts = require('./api/routs/subCategory');
 const cartRoutes = require('./api/routs/cart');
 
 var app = express();
+app.use(cors());
 
 //////
 
-app.use((req,res,next)=>{
-    /*// res.setHeader('Access-Control-Allow-Origin','*');
+/*app.use((req,res,next)=>{
+    // res.setHeader('Access-Control-Allow-Origin','*');
     // res.setHeader(
     //     'Access-Control-Allow-Headers','*'
     // );
@@ -36,7 +37,7 @@ app.use((req,res,next)=>{
     // }
 
     // // Pass to next layer of middleware
-    // next(); */
+    // next(); 
     // Website you wish to allow to connect
     res.setHeader('Access-Control-Allow-Origin', '*');
 
@@ -53,7 +54,7 @@ app.use((req,res,next)=>{
     // Pass to next layer of middleware
     next();
     
-})
+})*/
 
 //////////db///
 
@@ -68,7 +69,7 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
 
-app.use(cors());
+
 
 app.use(morgan('dev'));
 app.use('/uploads',express.static('uploads'))
