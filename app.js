@@ -78,7 +78,7 @@ app.use((req,res,next)=>{
   // // Pass to next layer of middleware
   // next();
 
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", "https://restshopingcart.herokuapp.com");
   res.setHeader("Access-Control-Allow-Headers", "*");
   next();
   
