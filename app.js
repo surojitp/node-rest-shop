@@ -17,7 +17,7 @@ const subCategoryRouts = require('./api/routs/subCategory');
 const cartRoutes = require('./api/routs/cart');
 
 var app = express();
-app.use(cors());
+//app.use(cors());
 
 //////
 
