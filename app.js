@@ -7,7 +7,7 @@ var logger = morgan = require('morgan');
 ////////
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const cors = require("cors");
+//const cors = require("cors");
 
 const productsRouts = require('./api/routs/products');
 const ordersRouts = require('./api/routs/orders');
@@ -17,11 +17,11 @@ const subCategoryRouts = require('./api/routs/subCategory');
 const cartRoutes = require('./api/routs/cart');
 
 var app = express();
-app.use(cors());
+//app.use(cors());
 
 //////
 
-/*app.use((req,res,next)=>{
+app.use((req,res,next)=>{
     // res.setHeader('Access-Control-Allow-Origin','*');
     // res.setHeader(
     //     'Access-Control-Allow-Headers','*'
@@ -54,7 +54,7 @@ app.use(cors());
     // Pass to next layer of middleware
     next();
     
-})*/
+})
 
 //////////db///
 
