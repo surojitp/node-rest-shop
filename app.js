@@ -78,8 +78,9 @@ app.use((req,res,next)=>{
   // // Pass to next layer of middleware
   // next();
 
-  res.setHeader("Access-Control-Allow-Origin", "https://restshopingcart.herokuapp.com");
-  res.setHeader("Access-Control-Allow-Headers", "*");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "*");
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   next();
   
 })
