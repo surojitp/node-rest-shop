@@ -16,41 +16,45 @@ exports.signup =  (req,res,next) =>{
                 })
             }else{
 
-                bcrypt.hash(req.body.password, 10, (err, hash) =>{
-                    if(err){
-                        return res.status(500).json({
-                            error: err,
-                            message: "wrong"
-                        })
-                    
-                    }else{
-
-                        res.status(201).json({
-                                        message: "User createddddd"
-                                    })
-            
-                        // const user = new User({
-                        //     _id: new mongoose.Types.ObjectId(),
-                        //     email: req.body.email,
-                        //     password: hash
-                        // });
-            
-                        // user.save()
-                        //     .then(result =>{
-                        //         console.log(result)
-                        //         res.status(201).json({
-                        //             message: "User created"
-                        //         })
-                        //     })
-                        //     .catch(err=>{
-                        //         console.log(err)
-                        //         res.status(500).json({
-                        //             error: err
-                        //         })
-                        //     })
-                        
-                    }
+                res.status(201).json({
+                    message: "kkkkkkkkkkkkkk"
                 })
+
+                // bcrypt.hash(req.body.password, 10, (err, hash) =>{
+                //     if(err){
+                //         return res.status(500).json({
+                //             error: err,
+                //             message: "wrong"
+                //         })
+                    
+                //     }else{
+
+                //         res.status(201).json({
+                //                         message: "User createddddd"
+                //                     })
+            
+                //         // const user = new User({
+                //         //     _id: new mongoose.Types.ObjectId(),
+                //         //     email: req.body.email,
+                //         //     password: hash
+                //         // });
+            
+                //         // user.save()
+                //         //     .then(result =>{
+                //         //         console.log(result)
+                //         //         res.status(201).json({
+                //         //             message: "User created"
+                //         //         })
+                //         //     })
+                //         //     .catch(err=>{
+                //         //         console.log(err)
+                //         //         res.status(500).json({
+                //         //             error: err
+                //         //         })
+                //         //     })
+                        
+                //     }
+                // })
 
             }
         })    
