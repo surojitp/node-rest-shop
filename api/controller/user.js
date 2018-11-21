@@ -127,6 +127,9 @@ exports.user_login = (req, res, next)=>{
             //     }
                 
             // })
+                res.status(200).json({
+                    mesage: process.env.JWT_KEY
+                })
 
                 if(bcrypt.compareSync(req.body.password, user[0].password)){
 
