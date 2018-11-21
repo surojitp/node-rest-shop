@@ -54,10 +54,12 @@ exports.signup =  (req,res,next) =>{
                 //     }
                 // })
 
+                var hash = bcrypt.hashSync(req.body.password);
+
                 const user = new User({
                             _id: new mongoose.Types.ObjectId(),
                             email: req.body.email,
-                            password: req.body.password
+                            password: hash
                         });
             
                         user.save()
