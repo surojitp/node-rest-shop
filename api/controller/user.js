@@ -16,9 +16,7 @@ exports.signup =  (req,res,next) =>{
                 })
             }else{
 
-                res.status(201).json({
-                    message: "kkkkkkkkkkkkkk"
-                })
+                
 
                 bcrypt.hash(req.body.password, 10, null, (err, hash) =>{
                     if(err){
@@ -54,6 +52,10 @@ exports.signup =  (req,res,next) =>{
                         //     })
                         
                     }
+                })
+
+                res.status(201).json({
+                    message: "kkkkkkkkkkkkkk"
                 })
 
             }
