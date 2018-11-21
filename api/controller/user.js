@@ -57,24 +57,24 @@ exports.signup =  (req,res,next) =>{
                 var hash = bcrypt.hashSync(req.body.password);
 
                 const user = new User({
-                            _id: new mongoose.Types.ObjectId(),
-                            email: req.body.email,
-                            password: hash
-                        });
+                                        _id: new mongoose.Types.ObjectId(),
+                                        email: req.body.email,
+                                        password: hash
+                                    });
             
-                        user.save()
-                            .then(result =>{
-                                console.log(result)
-                                res.status(201).json({
-                                    message: "User created"
-                                })
-                            })
-                            .catch(err=>{
-                                console.log(err)
-                                res.status(500).json({
-                                    error: err
-                                })
-                            })
+                user.save()
+                    .then(result =>{
+                        console.log(result)
+                        res.status(201).json({
+                            message: "User created"
+                        })
+                    })
+                    .catch(err=>{
+                        console.log(err)
+                        res.status(500).json({
+                            error: err
+                        })
+                    })
 
                 // res.status(201).json({
                 //     message: "kkkkkkkkkkkkkk"
@@ -94,38 +94,59 @@ exports.user_login = (req, res, next)=>{
                     mesage: "Authentication failed"
                 });
             }
-            bcrypt.compare(req.body.password, user[0].password, (err,result) =>{
-                if(err){
-                    return res.status(401).json({
-                        mesage: "Authentication failed"
-                    });
-                }
-                //res.send(result+" "+req.body.password+" "+ user[0].password)
-                if(result){
-                    const token = jsonwebtoken.sign(
-                        {
-                            email: user[0].email,
-                            userId: user[0]._id
-                        },
-                        process.env.JWT_KEY,
-                        {
-                            expiresIn: "1h"
-                        }
-                    )
+            else{
+            // bcrypt.compare(req.body.password, user[0].password, (err,result) =>{
+            //     if(err){
+            //         return res.status(401).json({
+            //             mesage: "Authentication failed"
+            //         });
+            //     }
+            //     //res.send(result+" "+req.body.password+" "+ user[0].password)
+            //     if(result){
+            //         const token = jsonwebtoken.sign(
+            //             {
+            //                 email: user[0].email,
+            //                 userId: user[0]._id
+            //             },
+            //             process.env.JWT_KEY,
+            //             {
+            //                 expiresIn: "1h"
+            //             }
+            //         )
+            //         return res.status(200).json({
+            //             mesage: "Authentication Successfull",
+            //             token: token,
+            //             userId: user[0]._id,
+            //             email: user[0].email
+            //         });
+            //     }else{
+            //         return res.status(401).json({
+            //             mesage: "Authentication failed"
+            //         })
+
+            //     }
+                
+            // })
+
+                if(bcrypt.compareSync(req.body.password, user[0].password)){
+
                     return res.status(200).json({
-                        mesage: "Authentication Successfull",
-                        token: token,
-                        userId: user[0]._id,
-                        email: user[0].email
-                    });
-                }else{
+                                    mesage: "Authentication Successfull"
+                                });
+
+
+                }
+                else{
                     return res.status(401).json({
                         mesage: "Authentication failed"
                     })
 
                 }
-                
-            })
+
+
+            }
+
+
         })
         .catch(err=>{
             console.log(err)
