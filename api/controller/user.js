@@ -130,8 +130,22 @@ exports.user_login = (req, res, next)=>{
 
                 if(bcrypt.compareSync(req.body.password, user[0].password)){
 
+                    const token = jsonwebtoken.sign(
+                                        {
+                                            email: user[0].email,
+                                            userId: user[0]._id
+                                        },
+                                        process.env.JWT_KEY,
+                                        {
+                                            expiresIn: "1h"
+                                        }
+                                    )
+
                     return res.status(200).json({
-                                    mesage: "Authentication Successfull"
+                                    mesage: "Authentication Successfull",
+                                    token: token,
+                                    userId: user[0]._id,
+                                    email: user[0].email
                                 });
 
 
