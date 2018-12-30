@@ -12,14 +12,14 @@ exports.signup =  (req,res,next) =>{
         .then(user => {
             if(user.length >= 1){
                
-                // return res.status(409).json({
-                //     message: "Email already use"
-                // })
-                return res.sendStatus(409).json({
-                    error: {
-                            message: "Email already use"
-                        }
-                  })
+                return res.status(409).json({
+                    message: "Email already use"
+                })
+                // return res.sendStatus(409).json({
+                //     error: {
+                //             message: "Email already use"
+                //         }
+                //   })
             }else{
 
                 
@@ -88,13 +88,13 @@ exports.signup =  (req,res,next) =>{
 
             }
         })
-        // .catch(err=>{
-        //     // console.log(err)
-        //     // res.status(500).json({
-        //     //     error: err
-        //     // })
-        //     throw err;
-        // })    
+        .catch(err=>{
+            console.log(err)
+            res.status(500).json({
+                error: err
+            })
+            //throw err;
+        })    
 
 }
 
