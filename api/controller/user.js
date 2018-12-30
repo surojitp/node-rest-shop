@@ -15,7 +15,7 @@ exports.signup =  (req,res,next) =>{
                 // return res.status(409).json({
                 //     message: "Email already use"
                 // })
-                res.status(409).send({status:409, message: 'internal error', type:'internal'}); 
+                return res.status(409).send({status:409, message: 'internal error', type:'internal'}); 
             }else{
 
                 
