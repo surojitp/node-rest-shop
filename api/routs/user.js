@@ -9,7 +9,14 @@ const jsonwebtoken = require('jsonwebtoken');
 
 const userController = require('../controller/user');
 
-router.post('/signup', userController.signup);
+router.post('/signup',(req,res)=>{
+
+  userController.signup(req.body,(data)=>{
+    res.send(data)
+  })
+}
+
+);
 
 router.post('/login', userController.user_login);
 

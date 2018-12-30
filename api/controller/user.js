@@ -5,96 +5,98 @@ const User = require('../../models/user');
 const bcrypt = require('bcrypt-nodejs');
 const jsonwebtoken = require('jsonwebtoken');
 
-exports.signup =  (req,res,next) =>{
+exports.signup =  (req,callback) =>{
+    callback(req)
 
-    User.find({email: req.body.email})
-        .exec()
-        .then(user => {
-            if(user.length >= 1){
+    // User.find({email: req.body.email})
+    //     .exec()
+    //     .then(user => {
+
+    //         return res.sendStatus(200).json({  message: "Email already use"}
+    //                   )
+    //         // if(user.length >= 1){
                
-                return res.status(409).json({
-                    message: "Email already use"
-                })
-                // return res.sendStatus(409).json({
-                //     error: {
-                //             message: "Email already use"
-                //         }
-                //   })
-            }else{
+    //         //     return res.status(409).json({
+    //         //         message: "Email already use"
+    //         //     })
+    //         //     // return res.sendStatus(409).json({
+    //         //     //     error: {
+    //         //     //             message: "Email already use"
+    //         //     //         }
+    //         //     //   })
+    //         // }else{
 
                 
 
-                // bcrypt.hash(req.body.password, 10, null, (err, hash) =>{
-                //     if(err){
-                //         return res.status(500).json({
-                //             error: err,
-                //             message: "wrong"
-                //         })
+    //         //     // bcrypt.hash(req.body.password, 10, null, (err, hash) =>{
+    //         //     //     if(err){
+    //         //     //         return res.status(500).json({
+    //         //     //             error: err,
+    //         //     //             message: "wrong"
+    //         //     //         })
                     
-                //     }else{
+    //         //     //     }else{
 
-                //         res.status(201).json({
-                //                         message: "User createddddd"
-                //                     })
+    //         //     //         res.status(201).json({
+    //         //     //                         message: "User createddddd"
+    //         //     //                     })
             
-                //         // const user = new User({
-                //         //     _id: new mongoose.Types.ObjectId(),
-                //         //     email: req.body.email,
-                //         //     password: hash
-                //         // });
+    //         //     //         // const user = new User({
+    //         //     //         //     _id: new mongoose.Types.ObjectId(),
+    //         //     //         //     email: req.body.email,
+    //         //     //         //     password: hash
+    //         //     //         // });
             
-                //         // user.save()
-                //         //     .then(result =>{
-                //         //         console.log(result)
-                //         //         res.status(201).json({
-                //         //             message: "User created"
-                //         //         })
-                //         //     })
-                //         //     .catch(err=>{
-                //         //         console.log(err)
-                //         //         res.status(500).json({
-                //         //             error: err
-                //         //         })
-                //         //     })
+    //         //     //         // user.save()
+    //         //     //         //     .then(result =>{
+    //         //     //         //         console.log(result)
+    //         //     //         //         res.status(201).json({
+    //         //     //         //             message: "User created"
+    //         //     //         //         })
+    //         //     //         //     })
+    //         //     //         //     .catch(err=>{
+    //         //     //         //         console.log(err)
+    //         //     //         //         res.status(500).json({
+    //         //     //         //             error: err
+    //         //     //         //         })
+    //         //     //         //     })
                         
-                //     }
-                // })
+    //         //     //     }
+    //         //     // })
 
-                var hash = bcrypt.hashSync(req.body.password);
+    //         //     var hash = bcrypt.hashSync(req.body.password);
 
-                const user = new User({
-                                        _id: new mongoose.Types.ObjectId(),
-                                        email: req.body.email,
-                                        password: hash
-                                    });
+    //         //     const user = new User({
+    //         //                             _id: new mongoose.Types.ObjectId(),
+    //         //                             email: req.body.email,
+    //         //                             password: hash
+    //         //                         });
             
-                user.save()
-                    .then(result =>{
-                        console.log(result)
-                        res.status(201).json({
-                            message: "User created"
-                        })
-                    })
-                    .catch(err=>{
-                        console.log(err)
-                        res.status(500).json({
-                            error: err
-                        })
-                    })
+    //         //     user.save()
+    //         //         .then(result =>{
+    //         //             console.log(result)
+    //         //             res.status(201).json({
+    //         //                 message: "User created"
+    //         //             })
+    //         //         })
+    //         //         .catch(err=>{
+    //         //             console.log(err)
+    //         //             res.status(500).json({
+    //         //                 error: err
+    //         //             })
+    //         //         })
 
-                // res.status(201).json({
-                //     message: "kkkkkkkkkkkkkk"
-                // })
+    //         //     // res.status(201).json({
+    //         //     //     message: "kkkkkkkkkkkkkk"
+    //         //     // })
 
-            }
-        })
-        .catch(err=>{
-            console.log(err)
-            res.status(500).json({
-                error: err
-            })
-            //throw err;
-        })    
+    //         // }
+    //     })
+    //     .catch(err=>{
+    //         console.log(err)
+    //         res.send({error:'internal server error'})
+    //         //throw err;
+    //     })    
 
 }
 
