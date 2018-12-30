@@ -15,7 +15,9 @@ exports.signup =  (req,res,next) =>{
                 // return res.status(409).json({
                 //     message: "Email already use"
                 // })
-                res.status(409).send('internal server error');
+                const error = new Error('missing id')
+                error.httpStatusCode = 409
+                return next(error)
             }else{
 
                 
@@ -84,13 +86,13 @@ exports.signup =  (req,res,next) =>{
 
             }
         })
-        .catch(err=>{
-            // console.log(err)
-            // res.status(500).json({
-            //     error: err
-            // })
-            throw err;
-        })    
+        // .catch(err=>{
+        //     // console.log(err)
+        //     // res.status(500).json({
+        //     //     error: err
+        //     // })
+        //     throw err;
+        // })    
 
 }
 
