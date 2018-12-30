@@ -4,10 +4,25 @@ const User = require('../../models/user');
 
 const bcrypt = require('bcrypt-nodejs');
 const jsonwebtoken = require('jsonwebtoken');
+var async = require('async');
 
 exports.signup =  (req,callback) =>{
-    callback(req)
+ 
+    async.waterfall([
+        checkEmail
+    ], (err,data)=> {
+        if(err){
+            callback({sucess:false,err:err})
+        }else{
+            callback({sucess:true,data:data})
 
+        }
+
+    })
+function checkEmail(req) {
+    callback('',req)
+    
+}
     // User.find({email: req.body.email})
     //     .exec()
     //     .then(user => {
