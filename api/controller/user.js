@@ -16,7 +16,9 @@ exports.signup =  (req,res,next) =>{
                 //     message: "Email already use"
                 // })
                 return res.sendStatus(409).json({
-                    error: 'Missing id'
+                    error: {
+                            message: "Email already use"
+                        }
                   })
             }else{
 
