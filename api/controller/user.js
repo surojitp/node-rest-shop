@@ -11,9 +11,11 @@ exports.signup =  (req,res,next) =>{
         .exec()
         .then(user => {
             if(user.length >= 1){
-                return res.status(409).json({
-                    message: "Email already use"
-                })
+               
+                // return res.status(409).json({
+                //     message: "Email already use"
+                // })
+                return res.status(409).send('Email already use');
             }else{
 
                 
