@@ -15,9 +15,9 @@ exports.signup =  (req,res,next) =>{
                 // return res.status(409).json({
                 //     message: "Email already use"
                 // })
-                const error = new Error('missing id')
-                error.httpStatusCode = 409
-                return next(error)
+                return res.sendStatus(409).json({
+                    error: 'Missing id'
+                  })
             }else{
 
                 
