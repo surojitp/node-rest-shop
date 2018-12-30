@@ -15,7 +15,7 @@ exports.signup =  (req,res,next) =>{
                 // return res.status(409).json({
                 //     message: "Email already use"
                 // })
-                return res.status(409).send('Email already use');
+                return res.status(200).send('Email already use');
             }else{
 
                 
